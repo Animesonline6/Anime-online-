@@ -2444,7 +2444,180 @@
     .logo { font-size: 1.4rem; letter-spacing: 2px; }
     .anime-grid { grid-template-columns: repeat(2, 1fr); gap: 0.65rem; }
   }
+
+  /* ——— CALENDÁRIO SEMANAL ——— */
+  .cal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  .cal-week-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 2px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 0.3rem 0.75rem;
+    border-radius: 20px;
+  }
+  .cal-days-nav {
+    display: flex;
+    gap: 0.4rem;
+    overflow-x: auto;
+    padding-bottom: 0.25rem;
+    margin-bottom: 1.25rem;
+    scrollbar-width: none;
+  }
+  .cal-days-nav::-webkit-scrollbar { display: none; }
+  .cal-day-pill {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.5rem 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    flex-shrink: 0;
+    min-width: 52px;
+  }
+  .cal-day-pill:hover { border-color: var(--accent); }
+  .cal-day-pill.active {
+    background: linear-gradient(135deg, rgba(232,64,64,0.15), rgba(255,107,53,0.1));
+    border-color: var(--accent);
+    box-shadow: 0 0 12px var(--glow);
+  }
+  .cal-day-name {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 1px;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  .cal-day-pill.active .cal-day-name { color: var(--accent); }
+  .cal-day-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    line-height: 1;
+    color: var(--text);
+  }
+  .cal-day-pill.active .cal-day-num { color: var(--accent); }
+  .cal-day-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0;
+  }
+  .cal-day-pill.has-anime .cal-day-dot { opacity: 1; }
+  .cal-day-pill.today .cal-day-num {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .cal-entries { display: flex; flex-direction: column; gap: 0.75rem; }
+  .cal-entry {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+  }
+  .cal-entry:hover { border-color: var(--accent); box-shadow: 0 0 12px var(--glow); }
+  .cal-entry-thumb {
+    width: 56px;
+    height: 80px;
+    border-radius: 6px;
+    object-fit: cover;
+    background: var(--surface);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+  .cal-entry-thumb img { width: 100%; height: 100%; object-fit: cover; border-radius: 6px; }
+  .cal-entry-body { flex: 1; min-width: 0; }
+  .cal-entry-time {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.58rem;
+    color: var(--accent);
+    letter-spacing: 1px;
+    margin-bottom: 0.3rem;
+  }
+  .cal-entry-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.05rem;
+    letter-spacing: 1px;
+    margin-bottom: 0.3rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .cal-entry-ep {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--accent2);
+    letter-spacing: 1px;
+    margin-bottom: 0.4rem;
+  }
+  .cal-entry-genre {
+    font-size: 0.75rem;
+    color: var(--muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .cal-entry-badge {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.52rem;
+    letter-spacing: 1px;
+    padding: 0.15rem 0.45rem;
+    border-radius: 3px;
+    background: rgba(232,64,64,0.12);
+    border: 1px solid rgba(232,64,64,0.3);
+    color: var(--accent);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .cal-empty {
+    text-align: center;
+    padding: 2.5rem 1rem;
+    color: var(--muted);
+  }
+  .cal-empty-icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
+  .cal-empty h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; letter-spacing: 2px; color: var(--text); margin-bottom: 0.4rem; }
+  .cal-empty p { font-size: 0.8rem; }
+
+  /* Admin calendar form */
+  .cal-admin-entry {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.85rem 1rem;
+    margin-bottom: 0.45rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+  .cal-admin-info { flex: 1; min-width: 150px; }
+  .cal-admin-title { font-weight: 700; font-size: 0.88rem; margin-bottom: 0.15rem; }
+  .cal-admin-meta { font-family: 'Space Mono', monospace; font-size: 0.58rem; color: var(--muted); letter-spacing: 1px; }
 </style>
+<!-- Adsterra Ads -->
+<script src="https://pl29334719.profitablecpmratenetwork.com/8f/93/07/8f930712d80511794cda1d09b82b015f.js"></script>
+<script src="https://pl29334718.profitablecpmratenetwork.com/92/60/03/926003b74182b2780a2e9cf5f3e42399.js"></script>
 </head>
 <body>
 
@@ -2531,6 +2704,7 @@
     <button class="nav-btn" id="nav-filmes" onclick="goPage('filmes')">🎬 Filmes</button>
     <button class="nav-btn nav-btn-highlight" id="nav-suggestions" onclick="goPage('suggestions')">✨ Sugestões</button>
     <button class="nav-btn" id="nav-genres" onclick="goPage('genres')">Géneros</button>
+    <button class="nav-btn" id="nav-calendario" onclick="goPage('calendario')">📅 Calendário</button>
     <button class="nav-btn" id="nav-history" onclick="goPage('history')">Histórico</button>
     <button class="nav-btn" id="nav-termos" onclick="goPage('termos')">Termos</button>
   </div>
@@ -2567,6 +2741,10 @@
   <button class="bnav-btn" id="bnav-suggestions" onclick="goPage('suggestions')">
     <span class="bnav-icon">✨</span>
     <span class="bnav-label">Sugestões</span>
+  </button>
+  <button class="bnav-btn" id="bnav-calendario" onclick="goPage('calendario')">
+    <span class="bnav-icon">📅</span>
+    <span class="bnav-label">Calendário</span>
   </button>
   <button class="bnav-btn" id="bnav-profile" onclick="currentUser ? goPage('profile') : openLoginModal()">
     <span class="bnav-icon" id="bnav-profile-icon">👤</span>
@@ -2678,6 +2856,28 @@
     <div class="genre-cards-grid" id="genre-cards"></div>
     <!-- Per-genre anime lists -->
     <div id="genres-content"></div>
+  </section>
+</div>
+
+<!-- ====== CALENDÁRIO SEMANAL ====== -->
+<div class="page" id="page-calendario">
+  <section>
+    <div class="section-header">
+      <span style="font-size:1.2rem">📅</span>
+      <span class="section-title">Calendário Semanal</span>
+      <div class="section-line"></div>
+      <span style="font-family:'Space Mono',monospace;font-size:0.6rem;color:var(--accent);white-space:nowrap;letter-spacing:1px;background:rgba(232,64,64,0.1);border:1px solid rgba(232,64,64,0.25);padding:0.18rem 0.5rem;border-radius:3px">LANÇAMENTOS</span>
+    </div>
+
+    <div class="cal-header">
+      <div class="cal-week-label" id="cal-week-label">Semana actual</div>
+    </div>
+
+    <!-- Days navigation -->
+    <div class="cal-days-nav" id="cal-days-nav"></div>
+
+    <!-- Day entries -->
+    <div class="cal-entries" id="cal-entries"></div>
   </section>
 </div>
 
@@ -2879,6 +3079,49 @@
         <p style="font-size:0.82rem;color:var(--muted);margin-bottom:1rem">A lista completa de filmes está numa página separada para melhor desempenho.</p>
         <button onclick="goPage('admin-filmes')" style="width:100%;background:rgba(100,160,255,0.08);border:1px solid rgba(100,160,255,0.3);color:#64a0ff;font-family:'Space Mono',monospace;font-size:0.72rem;letter-spacing:1px;padding:0.65rem 1rem;border-radius:6px;cursor:pointer;transition:all 0.2s" onmouseover="this.style.background='rgba(100,160,255,0.2)'" onmouseout="this.style.background='rgba(100,160,255,0.08)'">🎬 VER LISTA DE FILMES →</button>
         <div id="admin-filmes-list" style="display:none"></div>
+      </div>
+
+      <!-- CALENDÁRIO SEMANAL ADMIN -->
+      <div class="admin-card" style="border-color:rgba(245,197,24,0.2)">
+        <div class="admin-card-title" style="color:#f5c518">📅 Calendário Semanal de Lançamentos</div>
+        <p style="font-size:0.82rem;color:var(--muted);margin-bottom:1rem">Adiciona animes ao calendário semanal para informar os utilizadores dos lançamentos de episódios.</p>
+
+        <!-- ADD ENTRY FORM -->
+        <div class="form-group">
+          <label class="form-label">Dia da Semana</label>
+          <select class="form-select" id="cal-form-day">
+            <option value="0">Segunda-feira</option>
+            <option value="1">Terça-feira</option>
+            <option value="2">Quarta-feira</option>
+            <option value="3">Quinta-feira</option>
+            <option value="4">Sexta-feira</option>
+            <option value="5">Sábado</option>
+            <option value="6">Domingo</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Nome do Anime *</label>
+          <input class="form-input" id="cal-form-title" placeholder="Ex: Demon Slayer">
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.65rem;margin-bottom:0.9rem">
+          <div>
+            <label class="form-label">Horário (opcional)</label>
+            <input class="form-input" id="cal-form-time" type="time" placeholder="Ex: 19:00">
+          </div>
+          <div>
+            <label class="form-label">Episódio</label>
+            <input class="form-input" id="cal-form-ep" placeholder="Ex: Ep. 12" maxlength="20">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Género / Nota (opcional)</label>
+          <input class="form-input" id="cal-form-note" placeholder="Ex: Ação, Aventura · Temporada 4">
+        </div>
+        <button class="btn-admin" style="background:linear-gradient(135deg,#2a2000,#3a3000);border-color:rgba(245,197,24,0.4);color:#f5c518;margin-bottom:1rem" onclick="addCalendarEntry()">📅 ADICIONAR AO CALENDÁRIO</button>
+
+        <!-- EXISTING ENTRIES -->
+        <div style="font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:2px;color:var(--muted);margin-bottom:0.65rem;text-transform:uppercase">Entradas actuais</div>
+        <div id="admin-cal-list"></div>
       </div>
 
     </div>
@@ -3222,7 +3465,7 @@ async function sbGet(table) {
     });
     const rows = await res.json();
     if (!Array.isArray(rows)) return [];
-    return rows.map(r => r.data);
+    return rows.map(r => (r.data && typeof r.data === 'object') ? r.data : r).filter(Boolean);
   } catch(e) { return []; }
 }
 
@@ -4203,10 +4446,11 @@ function goPage(page) {
   const footer = document.getElementById('site-footer');
   if (footer) footer.style.display = ['home','filmes','termos'].includes(page) ? 'block' : 'none';
 
+  if (page === 'calendario') renderCalendario();
   if (page === 'home') renderHome();
   if (page === 'genres') { activeGenre = null; renderGenres(); }
   if (page === 'search') runSearch(document.getElementById('search-input').value);
-  if (page === 'admin') { renderAdminList(); renderAdminRequests(); renderAdminFilmes(); }
+  if (page === 'admin') { renderAdminList(); renderAdminRequests(); renderAdminFilmes(); loadCalendarEntries().then(renderAdminCalendar); }
   if (page === 'history') renderHistory();
   if (page === 'profile') renderProfile();
   if (page === 'suggestions') renderSuggestions();
@@ -5066,7 +5310,7 @@ async function saveFilme() {
   };
   showLoading('A guardar...');
   try {
-    await sbUpsert('animes', id, f);
+    await sbUpsert('filmes', id, f);
     if (editId) { filmes = filmes.map(x => x.id === editId ? f : x); }
     else { filmes.push(f); }
     hideLoading();
@@ -5108,7 +5352,7 @@ function editFilme(id) {
 async function deleteFilme(id) {
   if (!confirm('Apagar este filme?')) return;
   showLoading('A apagar...');
-  await sbDelete('animes', id);
+  await sbDelete('filmes', id);
   filmes = filmes.filter(f => f.id !== id);
   hideLoading();
   renderAdminFilmes();
@@ -5229,14 +5473,189 @@ function renderConcluidos() {
   }).join('');
 }
 
+// ——— CALENDÁRIO SEMANAL ———
+const CAL_DAYS = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'];
+let calSelectedDay = null;
+let calEntries = []; // in-memory cache from Supabase
+
+async function loadCalendarEntries() {
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/calendar?select=*`, {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+    });
+    if (!res.ok) {
+      console.error('Tabela "calendar" não encontrada no Supabase (HTTP ' + res.status + '). Cria a tabela com colunas: id (text, PK), data (jsonb).');
+      calEntries = [];
+      return;
+    }
+    const rows = await res.json();
+    if (!Array.isArray(rows)) { calEntries = []; return; }
+    calEntries = rows.map(r => (r.data && typeof r.data === 'object') ? r.data : r).filter(e => e && e.id);
+  } catch(e) {
+    console.error('Erro ao carregar calendário:', e);
+    calEntries = [];
+  }
+}
+
+async function saveCalendarEntry(entry) {
+  await sbUpsert('calendar', entry.id, entry);
+  // Only add to local cache if not already present
+  if (!calEntries.find(e => e.id === entry.id)) {
+    calEntries.push(entry);
+  }
+}
+
+async function removeCalendarEntry(id) {
+  await sbDelete('calendar', id);
+  calEntries = calEntries.filter(e => e.id !== id);
+}
+
+function buildCalendarUI(entries) {
+  const navEl = document.getElementById('cal-days-nav');
+  const entriesEl = document.getElementById('cal-entries');
+  const weekLabel = document.getElementById('cal-week-label');
+  if (!navEl || !entriesEl) return;
+
+  const today = new Date();
+  const dayOfWeek = today.getDay(); // 0=Sun
+  const monday = new Date(today);
+  monday.setDate(today.getDate() - (dayOfWeek === 0 ? 6 : dayOfWeek - 1));
+
+  const weekDates = Array.from({length: 7}, (_, i) => {
+    const d = new Date(monday);
+    d.setDate(monday.getDate() + i);
+    return d;
+  });
+
+  const fmt = d => `${String(d.getDate()).padStart(2,'0')}/${String(d.getMonth()+1).padStart(2,'0')}`;
+  if (weekLabel) weekLabel.textContent = `${fmt(weekDates[0])} — ${fmt(weekDates[6])}`;
+
+  const todayIdx = dayOfWeek === 0 ? 6 : dayOfWeek - 1;
+  if (calSelectedDay === null) calSelectedDay = todayIdx;
+
+  navEl.innerHTML = CAL_DAYS.map((name, i) => {
+    const d = weekDates[i];
+    const hasAnime = entries.some(e => e.day == i);
+    const isToday = i === todayIdx;
+    const isSelected = i === calSelectedDay;
+    return `<button class="cal-day-pill${isSelected ? ' active' : ''}${hasAnime ? ' has-anime' : ''}${isToday ? ' today' : ''}"
+      onclick="selectCalDay(${i})">
+      <span class="cal-day-name">${name.substring(0,3)}</span>
+      <span class="cal-day-num">${d.getDate()}</span>
+      <span class="cal-day-dot"></span>
+    </button>`;
+  }).join('');
+
+  const dayEntries = entries.filter(e => e.day == calSelectedDay);
+  if (!dayEntries.length) {
+    entriesEl.innerHTML = `<div class="cal-empty">
+      <div class="cal-empty-icon">📭</div>
+      <h3>${CAL_DAYS[calSelectedDay]}</h3>
+      <p>Nenhum lançamento programado para este dia.</p>
+    </div>`;
+    return;
+  }
+
+  dayEntries.sort((a, b) => (a.time || '99:99').localeCompare(b.time || '99:99'));
+
+  entriesEl.innerHTML = dayEntries.map(entry => {
+    const found = animes.find(a => a.title && a.title.toLowerCase().includes(entry.title.toLowerCase()));
+    const thumbHTML = found && found.cover
+      ? `<div class="cal-entry-thumb"><img src="${found.cover}" loading="lazy"></div>`
+      : found
+        ? `<div class="cal-entry-thumb">${found.icon || '📺'}</div>`
+        : `<div class="cal-entry-thumb">📺</div>`;
+
+    return `<div class="cal-entry" onclick="${found ? `openAnime('${found.id}')` : ''}">
+      ${thumbHTML}
+      <div class="cal-entry-body">
+        ${entry.time ? `<div class="cal-entry-time">🕐 ${entry.time}</div>` : ''}
+        <div class="cal-entry-title">${entry.title}</div>
+        ${entry.ep ? `<div class="cal-entry-ep">📺 ${entry.ep}</div>` : ''}
+        ${entry.note ? `<div class="cal-entry-genre">${entry.note}</div>` : ''}
+        ${found ? `<div style="color:var(--admin-accent);margin-top:0.35rem;font-family:'Space Mono',monospace;font-size:0.58rem;letter-spacing:1px">▶ Disponível na biblioteca</div>` : ''}
+      </div>
+      ${found ? '<span class="cal-entry-badge">NA BIBLIOTECA</span>' : ''}
+    </div>`;
+  }).join('');
+}
+
+async function renderCalendario() {
+  const entriesEl = document.getElementById('cal-entries');
+  if (entriesEl) entriesEl.innerHTML = '<div class="cal-empty"><div class="cal-empty-icon" style="font-size:1.5rem">⏳</div><p>A carregar...</p></div>';
+  await loadCalendarEntries();
+  if (!calEntries.length) {
+    const navEl = document.getElementById('cal-days-nav');
+    // Still build the nav so days show, even if empty
+  }
+  buildCalendarUI(calEntries);
+}
+
+function selectCalDay(idx) {
+  calSelectedDay = idx;
+  buildCalendarUI(calEntries);
+}
+
+// ——— Admin calendar functions ———
+function renderAdminCalendar() {
+  const listEl = document.getElementById('admin-cal-list');
+  if (!listEl) return;
+  if (!calEntries.length) {
+    listEl.innerHTML = '<div style="color:var(--muted);font-size:0.82rem;text-align:center;padding:0.75rem 0">Nenhuma entrada adicionada.</div>';
+    return;
+  }
+  const sorted = [...calEntries].sort((a,b) => a.day - b.day || (a.time||'').localeCompare(b.time||''));
+  listEl.innerHTML = sorted.map(e => `
+    <div class="cal-admin-entry">
+      <div class="cal-admin-info">
+        <div class="cal-admin-title">${e.title} ${e.ep ? `<span style="color:var(--accent2);font-size:0.78rem">(${e.ep})</span>` : ''}</div>
+        <div class="cal-admin-meta">${CAL_DAYS[e.day]}${e.time ? ' · ' + e.time : ''}${e.note ? ' · ' + e.note : ''}</div>
+      </div>
+      <button onclick="deleteCalendarEntry('${e.id}')" style="background:none;border:1px solid #3a1a1a;color:var(--accent);width:30px;height:30px;border-radius:4px;cursor:pointer;font-size:0.85rem;flex-shrink:0;transition:all 0.2s" onmouseover="this.style.background='var(--accent)';this.style.color='#fff'" onmouseout="this.style.background='none';this.style.color='var(--accent)'">🗑</button>
+    </div>
+  `).join('');
+}
+
+async function addCalendarEntry() {
+  const title = document.getElementById('cal-form-title').value.trim();
+  if (!title) { showToast('Insere o nome do anime!'); return; }
+  const day = parseInt(document.getElementById('cal-form-day').value);
+  const time = document.getElementById('cal-form-time').value;
+  const ep = document.getElementById('cal-form-ep').value.trim();
+  const note = document.getElementById('cal-form-note').value.trim();
+  const entry = { id: 'cal_' + Date.now(), title, day, time, ep, note };
+
+  showLoading('A guardar no calendário...');
+  try {
+    await saveCalendarEntry(entry);
+    document.getElementById('cal-form-title').value = '';
+    document.getElementById('cal-form-time').value = '';
+    document.getElementById('cal-form-ep').value = '';
+    document.getElementById('cal-form-note').value = '';
+    renderAdminCalendar();
+    showToast('📅 Entrada adicionada ao calendário!');
+  } catch(e) {
+    showToast('❌ Erro ao guardar. Verifica a tabela "calendar" no Supabase.');
+  }
+  hideLoading();
+}
+
+async function deleteCalendarEntry(id) {
+  if (!confirm('Remover esta entrada do calendário?')) return;
+  showLoading('A remover...');
+  await removeCalendarEntry(id);
+  hideLoading();
+  renderAdminCalendar();
+  showToast('Entrada removida.');
+}
+
 // ——— INIT ———
 async function init() {
   loadUserSession();
   showLoading('A carregar biblioteca...');
-  const allItems = await sbGet('animes');
-  const allFiltered = allItems.filter(Boolean);
-  animes = allFiltered.filter(a => a.type !== 'filme');
-  filmes = allFiltered.filter(a => a.type === 'filme');
+  const [allAnimes, allFilmesRaw] = await Promise.all([sbGet('animes'), sbGet('filmes')]);
+  animes = allAnimes.filter(Boolean);
+  filmes = allFilmesRaw.filter(Boolean);
   hideLoading();
   renderHome();
   addEpRow();
